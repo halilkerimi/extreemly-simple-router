@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/public/(.*?)(\.jpg|\.html)$
+RewriteRule (.*) index.php [L]

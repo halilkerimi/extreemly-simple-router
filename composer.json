@@ -1,0 +1,13 @@
+{
+    "name": "mamphir/extreemly-simple-router",
+    "description": "Very simple PHP router that can easly be integrated on your app and easly modified to fit your needs",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Halil Qerimi",
+            "email": "halil.kerimi@yahoo.com"
+        }
+    ],
+    "require": {}
+}
