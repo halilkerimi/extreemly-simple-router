@@ -15,12 +15,17 @@ require_once("./router.php");
 $router = new \ESRouter\Router();
 
 //define new route
-$route->addRoute("/user/{name}/post/{id:[0-9]}", "get", function ($args) {
+$router->addRoute("/user/{name}/post/{id:[0-9]}", "get", function ($args) {
     //handle request as you need
     $name = $args['name'];
     $id = $args['id'];
     print $name $id ;
 });
+//more routes
+//...
+
+$router->run();
+
 ```
 
 ## Defining Routes
