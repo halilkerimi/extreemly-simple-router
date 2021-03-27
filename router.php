@@ -8,7 +8,7 @@
 
 namespace ESRouter;
 /**
- * Route class that olds predefined routes
+ * Route class that holds predefined routes
  * @access public
  */
 class Route {
