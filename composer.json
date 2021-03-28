@@ -9,5 +9,7 @@
             "email": "halil.kerimi@yahoo.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.4"
+    }
 }
