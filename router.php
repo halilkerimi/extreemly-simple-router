@@ -48,6 +48,13 @@ class Route {
         $this->method = strtoupper($method);
         $this->handler = $handler;
     }
+
+    /**
+     * 
+     */
+    public function __toString(): string {
+        return (string) $this->method.$this->route;
+    }
 }
 
 /**
@@ -56,6 +63,13 @@ class Route {
  * @access public
  */
 class Router {
+
+    /**
+     * @var \Closure
+     * @access private
+     */
+
+     private $e404;
 
     /**
      * @var array Array of Route Objects
@@ -74,7 +88,22 @@ class Router {
     public function addRoute(string $route, string $method, \Closure $handler): void {
         $regExpression = "/" . $this->prepareRegex($route) . "/";
         $route = new Route($route, $regExpression, $method, $handler);
+        foreach($this->routes as $rt) {
+            if((string)$rt == (string)$route) {
+                throw new \Exception('Route "'.$route->route.'" already exists for method "'.$route->method.'"');
+            }
+        }
         array_push($this->routes, $route);
+    }
+
+    /**
+     * Appends anonther route to the list of defined routes
+     * @param string $handler E404 handler
+     * @return void 
+     * @access public
+     */
+    public function setE404(\Closure $handler) {
+        $this->e404 = $handler;
     }
 
     /**
@@ -105,7 +134,12 @@ class Router {
         }
 
         if ($e404) {
-            echo "404";
+            if($this->e404 == null) {
+                http_response_code(404);
+                echo "404";
+                return;
+            }
+            call_user_func($this->e404);       
         }
     }
 
