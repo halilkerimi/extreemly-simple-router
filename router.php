@@ -128,7 +128,7 @@ class Router {
                     call_user_func_array($route->handler, array($matches));
 
                     //In case match is found, break foreach loop not to continue futher
-                    break;
+                    //break;
                 }
             }
         }
@@ -154,7 +154,7 @@ class Router {
         $routeParts = array_filter(explode('/', $route));
         foreach ($routeParts as $part) {
             if ($part[0] === "{" && $part[strlen($part) - 1] === "}") {
-                $expression = trim($part, "{}");
+                $expression = substr($part, 1, -1);
                 if (substr_count($expression, ":") == 1) {
                     $parts = explode(':', $expression);
 
